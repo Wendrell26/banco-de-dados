@@ -1,0 +1,39 @@
+1)
+
+DELIMITER $$
+create procedure sp_curso_excluir(var_cod int)
+	begin
+		Delete from curso where cod_curso = var_cod;
+END $$
+
+2) 
+
+DELIMITER $$
+create procedure sp_curso_inserir(var_cod int, var_sigla varchar(7), var_nome varchar(50))
+Begin	
+	Insert into curso(cod_curso,sigla_curso,nome_curso) values(var_cod,var_sigla,var_nome);
+END $$
+
+call sp_curso_inserir(7,'BIO','Biologia');
+call sp_curso_inserir(8,'ENG','Engenharia');
+call sp_curso_inserir(9,'COMP',','Computação');
+call sp_curso_inserir(10,'FIS','Física');
+call sp_curso_inserir(11,'GEO','Geologia');
+call sp_curso_inserir(12,'HIS','História');
+call sp_curso_inserir(13,''MAT','Matemática');
+
+3)
+call sp_curso_excluir(11);
+call sp_curso_excluir(12);
+
+
+
+
+4)
+DELIMITER $
+create procedure sp_curso_inserir_atualizar(var_cod int,var_sigla varchar(7),var_nome(50))
+	begin
+		replace into curso values(var_cod,var_sigla,var_nome);
+END$
+
+call sp_curso_inserir_atualizar(9,'COMPT','Computação');
